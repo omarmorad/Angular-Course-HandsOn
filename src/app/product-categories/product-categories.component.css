@@ -1,0 +1,11 @@
+.product-grid-container {
+  /* Remove or comment out the height/max-height rule below */
+  /* height: 600px;  <-- Example: Find and remove this line */
+  /* max-height: 70vh; <-- Or this line */
+  overflow-y: auto; /* This might also be present */
+  /* ... other styles ... */
+}
+
+.row {
+  /* ... other styles ... */
+}

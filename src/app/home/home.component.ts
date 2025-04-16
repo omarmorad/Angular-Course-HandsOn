@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { CategoryComponent } from '../category/category.component';
+import { ProductService } from '../services/product.service';
+import { Product } from '../interfaces/product';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +12,12 @@ import { CategoryComponent } from '../category/category.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  recommendedProducts = [
-    {
-      image:'assets/images/product1.jpg',
-      productName:'product 1',
-      productPrice:'100',
-      onSale:true,
-    },
-    {
-      image:'assets/images/product2.jpg',
-      productName:'product 2',
-      productPrice:'200',
-      onSale:true,
-    }
-  ];
+export class HomeComponent implements OnInit {
+  recommendedProducts: Product[] = [];
+
+  constructor(private productService: ProductService) {}
+
+  ngOnInit() {
+    this.recommendedProducts = this.productService.getRecommendedProducts();
+  }
 }

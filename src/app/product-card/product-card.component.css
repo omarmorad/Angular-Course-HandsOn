@@ -1,0 +1,101 @@
+/* These styles are scoped to ProductCardComponent */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-img-top { /* Targets the img tag within this component's template */
+  height: 200px; /* Or your desired height */
+  object-fit: contain;
+  width: 100%;
+  padding: 1rem;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.d-grid {
+  margin-top: auto;
+}
+
+
+/* Card container */
+.card {
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.product-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important; /* Softer shadow on hover */
+}
+
+/* Image styling */
+.card-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image {
+  height: 180px; /* Adjust as needed */
+  width: auto; /* Maintain aspect ratio */
+  max-width: 100%;
+  object-fit: contain; /* Ensure image fits without distortion */
+  transition: transform 0.3s ease;
+}
+
+.product-card-hover:hover .product-image {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Custom Badge Style */
+.bg-primary-soft {
+  background-color: rgba(var(--bs-primary-rgb), 0.15) !important; /* Use Bootstrap primary color with transparency */
+  backdrop-filter: blur(3px);
+  font-size: 0.75rem;
+  padding: 0.3em 0.6em;
+}
+.text-primary {
+ color: var(--bs-primary) !important;
+}
+
+
+/* Text Truncation Helpers */
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.5em; /* Approximate height for 2 lines of text */
+}
+
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* Button styling on hover (optional) */
+.view-details-btn i {
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-card-hover:hover .view-details-btn i {
+  transform: translateX(3px);
+}
+
+/* Ensure icons work (Install bootstrap-icons if you haven't: npm install bootstrap-icons) */
+/* You might need to add this to your global styles.scss or angular.json */
+/* @import "bootstrap-icons/font/bootstrap-icons.css"; */
+
+/* Or link via CDN in index.html */
+/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> */

@@ -1,0 +1,60 @@
+<div class="container my-4">
+  <!-- Category Selection -->
+  <div class="mb-4">
+    <h2>Categories</h2>
+    <div class="btn-group flex-wrap" role="group" aria-label="Product categories">
+      <button
+        *ngFor="let category of categories"
+        type="button"
+        class="btn m-1"
+        [ngClass]="{'btn-primary': category === selectedCategory, 'btn-outline-primary': category !== selectedCategory}"
+        (click)="selectCategory(category)">
+        {{ category | titlecase }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Selected Category Products Section -->
+  <div class="mb-5" *ngIf="selectedCategory">
+    <h2 class="mb-3">Top {{ selectedCategory | titlecase }}</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <div class="col d-flex align-items-stretch" *ngFor="let product of categoryProducts">
+        <app-product-card [product]="product" class="w-100"></app-product-card>
+      </div>
+    </div>
+    <p *ngIf="categoryProducts.length === 0" class="text-muted mt-3">No products found in this category.</p>
+  </div>
+
+  <hr class="my-5">
+
+  <!-- All Products Section -->
+  <div>
+    <h2 class="mb-3">All Products</h2>
+
+    @defer (on viewport) {
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+        @for (product of allProducts$ | async; track product.id) {
+          <div class="col d-flex align-items-stretch">
+            <app-product-card [product]="product" class="w-100"></app-product-card>
+          </div>
+        } @empty {
+          <p class="text-muted">No products available.</p>
+        }
+      </div>
+    } @placeholder (minimum 500ms) {
+      <div class="d-flex justify-content-center p-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    } @loading (minimum 1s) {
+      <div class="d-flex justify-content-center p-5">
+        <div class="spinner-border text-secondary" role="status">
+          <span class="visually-hidden">Loading products...</span>
+        </div>
+      </div>
+    } @error {
+      <p class="alert alert-danger">Failed to load products. Please try again later.</p>
+    }
+  </div>
+</div>
