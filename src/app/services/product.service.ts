@@ -99,36 +99,28 @@ export class ProductService {
     }
   ];
   
-  private productsSubject: BehaviorSubject<Product[]>; // Declare the subject
+  private productsSubject: BehaviorSubject<Product[]>; 
   
   constructor() {
-    // Initialize the BehaviorSubject in the constructor
     this.productsSubject = new BehaviorSubject<Product[]>(this.products);
   }
   
-  // Correct method signature for getAllProducts
   getAllProducts(): Observable<Product[]> {
     return this.productsSubject.asObservable();
   }
   
-  // Correct method signature for getProductsByCategory
   getProductsByCategory(category: string): Product[] {
     return this.products.filter(product => product.category === category);
   }
   
-  // Correct method signature for getCategories
   getCategories(): string[] {
-    // Use Set to get unique categories
     return [...new Set(this.products.map(product => product.category))];
   }
   
-  // Correct method signature for getRecommendedProducts
   getRecommendedProducts(): Product[] {
-    // Return the first 3 products as recommended
     return this.products.slice(0, 4);
   }
   
-  // Correct method signature for getPaginatedProducts
   getPaginatedProducts(page: number, itemsPerPage: number): Product[] {
     const start = page * itemsPerPage;
     const end = start + itemsPerPage;
