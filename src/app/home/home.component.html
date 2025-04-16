@@ -1,0 +1,19 @@
+<div class="row mb-4">
+  <div class="col-12">
+    <h2 class="text-center">Recommended Products</h2>
+    <div class="row">
+      @for (product of recommendedProducts; track product.productName) {
+        <div class="col-md-6">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h2 class="text-center"></h2>
+    <app-category></app-category>
+  </div>
+</div>
